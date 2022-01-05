@@ -94,3 +94,62 @@ a = 'a';
 
 // TypeError: Assignment to constant variable.
 console.log(a);
+
+
+// 8
+
+// Propiedad de objetos mejorada
+
+let  name = 'Diana';
+let age = 25;
+
+obj = { name: name, age: age };
+
+// ES6
+obj2 = { name, age };
+console.log(obj2);
+
+// 9
+
+// arrow functions -> sintaxis reducida y this no vinculable
+// las arrow functions son funciones anónimas
+const names = [
+    { name: 'Diana', age: 25 },
+    { name: 'Camila', age: 29 }
+]
+let listOfNames = names.map(function (item) {
+    console.log(item.name);
+});
+
+// ES6
+let listOfElements2 = names.map(item => console.log(item.name));
+
+const listOfElements3 = (name, age, country) => {
+ // bloque código
+}
+
+const listOfElements4 = name => {
+ // bloque codigo
+}
+
+const square = num => num * num;
+
+
+// 10
+
+// promesas -> asincronismo en JS. "Algo va a pasar"
+
+const helloPromise = () => {
+    return  new Promise((resolve, reject) => {
+        if (true) {
+            resolve('Hey!');
+        } else {
+            reject('Ups');
+        }
+    });
+}
+
+helloPromise()
+    .then(response => console.log(response))
+    .then(() => console.log('Holi'))
+    .catch(err => console.log(err));
