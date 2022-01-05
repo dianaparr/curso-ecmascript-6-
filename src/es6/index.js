@@ -141,6 +141,7 @@ const square = num => num * num;
 
 const helloPromise = () => {
     return  new Promise((resolve, reject) => {
+        // or false and print Ups
         if (true) {
             resolve('Hey!');
         } else {
@@ -153,3 +154,53 @@ helloPromise()
     .then(response => console.log(response))
     .then(() => console.log('Holi'))
     .catch(err => console.log(err));
+
+
+// 11
+
+// classes (OOP)
+
+class calculator {
+    // variables de scope global
+    constructor() {
+        this.valueA = 0;
+        this.valueB = 0;
+    }
+    // método -> al que se le pasan los dos elementos que se quieren sumar y
+    // se asina a las variables creadas en la clase, el valor de cada elemento que se pasa.
+    sum(valueA, valueB) {
+        this.valueA = valueA;
+        this.valueB = valueB;
+        return this.valueA + this.valueB;
+    }
+}
+
+const calc = new calculator();
+console.log(calc.sum(2, 2));
+
+
+// 12
+
+// import/export -> trabajo con módulos
+import { hello } from './module';
+hello();
+
+
+// 13
+
+// genereitors -> función especial que retorna una serie de valores según el algorítmo definido
+// Recuerda el valor consecuente y lo presenta.
+
+function* helloWorld() {
+    if (true) {
+        yield 'Hello, ';
+    }
+    if (true) {
+        yield 'World';
+    }
+};
+
+const generatorHello = helloWorld();
+console.log(generatorHello.next().value);
+console.log(generatorHello.next().value);
+console.log(generatorHello.next().value);
