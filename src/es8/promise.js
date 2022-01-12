@@ -59,3 +59,21 @@ readFile('./archivo.txt')
     .catch(err => console.error(err));
 
 
+// 4. Encadenando promesas -> promise chaining
+// Una promesa puede devolver otra promesa y llamar al siguiente .then de la cadena.
+
+// Ejemplo: archivo.txt devuelve un string con el path de otro archivo y se quiere leer ese segundo archivo que esta en ese path. Con callbacks sería:
+
+fs.readFile('./archivo.txt', 'utf-8', (error, path) => {
+    if (error) throw error;
+    fs.readFile(path, 'utf8', (err, data) => {
+        console.log(data);
+    });
+});
+
+// Con promesas: (ver promesa, line 48)
+readFile('./archivo.txt')
+    .then(readFile)
+    .then(data => console.log(data))
+    .catch(error => console.log(error));
+
