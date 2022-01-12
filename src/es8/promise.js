@@ -15,3 +15,26 @@ const promise = new Promise((resolve, reject) => {
 promise
     .then(number => console.log(number))
     .catch(error => console.error(error));
+
+
+// función que recibe parámetros y retorna la instancia de Promise
+
+function randomDelayed(max=10, expected=5, delay=1000) {
+    return new Promise((resolve, reject) => {
+        const number = Math.floor(Math.random() * max);
+
+    setTimeout(
+        () => number > expected
+            ? resolve(number)
+            :reject(new Error('El número es menor al esperado')),
+        delay
+    )
+    });
+}
+
+
+// Crear una promesa que luego de 2.5 segundos se va a resolver siempre que el número generado (entre 0 y 100)
+// sea mayor a 75.
+randomDelayed(100, 75, 2500)
+    .then(number => console.log(number))
+    .catch(error => console.error(error));
