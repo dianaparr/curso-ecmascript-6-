@@ -77,3 +77,37 @@ readFile('./archivo.txt')
     .then(data => console.log(data))
     .catch(error => console.log(error));
 
+// Ejemplo2: No solo hay que devolver promesas, ya que si la función que pasamos a .then hace un return entonces el valor devuelto pasa al siguiente
+// .then de la cadena, sin importar que sea una promesa, un objeto, un string, un número o cualquier otro tipo de datos.
+
+import { resolve } from 'path';
+
+readFile('./archivo.txt')
+    .then(resolve)
+    .then(readFile)
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+
+
+// 5. Promesas en paralelo
+// Método estático Promise.all -> recibe un único parámetro: una lista de promesas las cuales se ejecutan simultáneamente
+
+import { resolve } from 'path';
+
+Promise.all([readFile('./archivo.txt'), readFile('./archivo2.txt')])
+    .then(data => data.map(resolve))
+    .then(data => Promise.all(data.map(readFile)))
+    .then(finalData => console.log(finalData))
+    .catch(error => console.error(error));
+
+
+// 6. Carrera de promesas
+// Método que corre varias promesas al tiempo, pero solo es para obtener el resultado de la primera promesa -> Promise.race
+
+import { resolve } from 'path';
+
+Promise.race([readFile('/.archivo.txt'), readFile('./archivo2.txt')])
+    .then(resolve)
+    .then(readFile)
+    .then(data => console.log(data))
+    .catch(err => console.error(err));
